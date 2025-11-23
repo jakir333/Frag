@@ -22,12 +22,9 @@ jobs:
       with:
         gradle-version: '8.5'
 
-    # THIS IS THE NEW PART THAT FIXES THE ERROR
-    - name: Make gradlew executable
-      run: chmod +x ./gradlew
-
-    - name: Build the App
-      run: ./gradlew assembleDebug --stacktrace
+    - name: Build with Global Gradle
+      # WE REMOVED THE "./" AND THE "w" HERE
+      run: gradle assembleDebug --stacktrace
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
